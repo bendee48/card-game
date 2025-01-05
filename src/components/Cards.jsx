@@ -25,7 +25,7 @@ function Cards() {
         const json = await result.json();
         return {
           name: json.name,
-          pic: json.sprites.other['official-artwork'].front_default,
+          url: json.sprites.other['official-artwork'].front_default,
         };
       })
     );
@@ -37,7 +37,7 @@ function Cards() {
   return (
     <>
       <h1>Cards</h1>
-      {cards.map(card => <p key={card.name}>{card.pic}</p>)}
+      {cards.map(card => <div key={card.name} className="card"><img src={card.url} alt={card.name} /></div>)}
     </>
   )
 }

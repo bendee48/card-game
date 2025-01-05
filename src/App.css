@@ -4,3 +4,9 @@
   padding: 2rem;
   text-align: center;
 }
+
+/* Cards */
+
+.card {
+  border: 1px solid black;
+}
