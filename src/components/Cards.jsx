@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
-function Cards() {
+function Cards({scoreHandler}) {
   const [cards, setCards] = useState([]);
+  const selectedCards = useRef([]);
+  console.log(selectedCards)
 
   useEffect(() => {
     console.log('The effect has run')
@@ -45,16 +47,32 @@ function Cards() {
     setCards(cardsCopy);
   }
 
+  // handling adding a score after a card click and the shuffle
+  function handleCardClick(e) {
+    if (selectedCards.current.includes(e.currentTarget.dataset.key)) {
+      console.log('card already seen')
+    } else {
+      selectedCards.current.push(e.currentTarget.dataset.key);
+    }
+    scoreHandler();
+    shuffle();
+  }
+
 
   return (
     <>
-      <h1>Cards</h1>
-      {
-        cards.map(card => 
-          <div key={card.name} className="card" onClick={shuffle}>
-            <img src={card.url} alt={card.name} />
-          </div>)
-      }
+      <div className="card-grid">
+        {
+          cards.map(card => 
+            <div 
+                 key={card.name} 
+                 className="card"
+                 data-key={card.name}
+                 onClick={handleCardClick}>
+              <img src={card.url} alt={card.name} />
+            </div>)
+        }
+      </div>
     </>
   )
 }

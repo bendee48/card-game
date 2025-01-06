@@ -5,6 +5,14 @@
   text-align: center;
 }
 
+/* Card Grid */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1em;
+}
+
 /* Cards */
 
 .card {

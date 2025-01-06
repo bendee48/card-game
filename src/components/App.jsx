@@ -1,12 +1,11 @@
 import '../App.css'
-import Cards from './Cards.jsx'
+import Game from './Game.jsx'
 
 function App() {
 
   return (
     <>
-      <h1>Hello</h1>
-      <Cards />
+      <Game />
     </>
   )
 }
