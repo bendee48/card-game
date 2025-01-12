@@ -1,8 +1,17 @@
+/* Main Styling */
+
 #root {
   max-width: 1280px;
+  width: 90%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  border: 1px solid black;
+}
+
+img {
+  width: 100%;
+  height: auto;
 }
 
 /* Card Grid */
@@ -17,4 +26,28 @@
 
 .card {
   border: 1px solid black;
+}
+
+/* Modal */
+
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(55,55,55,.7);
+}
+
+.modal-menu {
+  max-height: 90%;
+  max-width: 90%;
+  min-width: 50vw;
+  padding: 1rem;
+  border-radius: .5rem;
+  background: red;
 }

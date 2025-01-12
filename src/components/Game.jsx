@@ -12,21 +12,32 @@ function Game() {
 
   function handleGameOver() {
     setGameOver(true);
+  }
+  
+  function handleReset() {
+    setGameOver(false);
     setTopScore(Math.max(score, topScore)); // if current score is higher than top score, update top score
     setScore(0);
   }
 
   return (
     <>
-      <h1>Card Game</h1>
-      {gameOver && <h1>Game Over</h1>}
+      { gameOver ? 
+        <div className='modal'>
+          <div className='modal-menu'>
+            <h1>Round Over</h1>
+            <p>Score: {score}</p>
+            <button onClick={handleReset}>Play Again?</button>
+          </div>
+        </div> :
+        null
+      }
       <div>
         <h2>Scores</h2>
         <span>Current score: {score}</span>
         <span>Top Score: {topScore}</span>
       </div>
       <div>
-        <h2>Grid</h2>
         <Cards 
           scoreHandler={handleScoreChange} 
           gameOverHandler={handleGameOver}
