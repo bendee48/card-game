@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 
-function Cards({scoreHandler, gameOverHandler}) {
+function Cards({scoreHandler, gameOverHandler, gameWinHandler}) {
   const [cards, setCards] = useState([]);
-  let selectedCards = useRef([]);
+  let selectedCards = useRef(new Set());
   console.log(selectedCards)
   useEffect(() => {
     console.log('The effect has run')
@@ -48,14 +48,19 @@ function Cards({scoreHandler, gameOverHandler}) {
 
   // handling adding a score after a card click and the shuffle
   function handleCardClick(e) {
-    if (selectedCards.current.includes(e.currentTarget.dataset.key)) {
-      selectedCards.current = [];
+    const poke = e.currentTarget.dataset.name;
+
+    if (selectedCards.current.has(poke)) {
+      selectedCards.current.clear();
       gameOverHandler();
+    } else if (cards.length - selectedCards.current.size == 1) {
+      selectedCards.current.clear();
+      scoreHandler();
+      gameWinHandler();
     } else {
-      selectedCards.current.push(e.currentTarget.dataset.key);
+      selectedCards.current.add(poke);
       scoreHandler();
     }
-    // shuffle();
   }
 
 
@@ -67,7 +72,7 @@ function Cards({scoreHandler, gameOverHandler}) {
             <div 
                  key={card.name} 
                  className="card"
-                 data-key={card.name}
+                 data-name={card.name}
                  onClick={handleCardClick}>
               <img src={card.url} alt={card.name} />
             </div>)
