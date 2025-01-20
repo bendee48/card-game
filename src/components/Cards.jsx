@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 
-function Cards({scoreHandler, gameOverHandler, gameWinHandler}) {
+function Cards({onUpdateScore, onGameOver, onGameWin}) {
   const [cards, setCards] = useState([]);
   let selectedCards = useRef(new Set());
-  console.log(selectedCards)
+
   useEffect(() => {
     console.log('The effect has run')
     async function fetchPokemon() {
@@ -46,21 +46,27 @@ function Cards({scoreHandler, gameOverHandler, gameWinHandler}) {
     setCards(cardsCopy);
   }
 
+  function clearSelectedCards() {
+    selectedCards.current.clear();
+  }
+
   // handling adding a score after a card click and the shuffle
   function handleCardClick(e) {
     const poke = e.currentTarget.dataset.name;
 
     if (selectedCards.current.has(poke)) {
-      selectedCards.current.clear();
-      gameOverHandler();
+      clearSelectedCards();
+      onGameOver();
     } else if (cards.length - selectedCards.current.size == 1) {
-      selectedCards.current.clear();
-      scoreHandler();
-      gameWinHandler();
+      clearSelectedCards();
+      onUpdateScore();
+      onGameWin();
     } else {
       selectedCards.current.add(poke);
-      scoreHandler();
+      onUpdateScore();;
     }
+
+    shuffle();
   }
 
 

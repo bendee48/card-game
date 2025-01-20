@@ -1,6 +1,7 @@
 /* Main Styling */
 
 #root {
+  position: relative;
   max-width: 1280px;
   width: 90%;
   margin: 0 auto;
@@ -14,12 +15,27 @@ img {
   height: auto;
 }
 
+.help-icon {
+  width: 3em;
+  float: right;
+  cursor: help;
+}
+
+.help-icon:hover {
+  filter: invert(0.4);
+}
+
+.scores {
+  clear: both;
+}
+
 /* Card Grid */
 
 .card-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1em;
+  /* margin-top: 4em; */
 }
 
 /* Cards */
