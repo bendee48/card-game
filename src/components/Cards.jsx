@@ -1,17 +1,26 @@
 import { useEffect, useState, useRef } from "react";
+import  Error  from './Error.jsx';
 
 function Cards({onUpdateScore, onGameOver, onGameWin}) {
   const [cards, setCards] = useState([]);
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   let selectedCards = useRef(new Set());
 
   useEffect(() => {
     console.log('The effect has run')
     async function fetchPokemon() {
-      const result = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=12')
-      const json = await result.json();
-      const pokeList = json.results;
-      const detailedList = await getPokeInfo(pokeList);
-      setCards(detailedList);
+      try {
+        const result = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=12')
+        const json = await result.json();
+        const pokeList = json.results;
+        const detailedList = await getPokeInfo(pokeList);
+        setCards(detailedList);
+      } catch(e) {
+        console.error('ooops', e)
+        setError(true);
+      }
+      setIsLoading(false);
     }
 
     fetchPokemon()
@@ -72,18 +81,30 @@ function Cards({onUpdateScore, onGameOver, onGameWin}) {
 
   return (
     <>
-      <div className="card-grid">
-        {
-          cards.map(card => 
-            <div 
-                 key={card.name} 
-                 className="card"
-                 data-name={card.name}
-                 onClick={handleCardClick}>
-              <img src={card.url} alt={card.name} />
-            </div>)
-        }
-      </div>
+      { isLoading ? 
+        <div>
+          <p>Fetching them there cards...</p>
+          <svg className="loading-icon" viewBox="0 0 50 50">
+            <circle className="ring" cx="25" cy="25" r="20"></circle>
+            <circle className="ball" cx="25" cy="5" r="3.5"></circle>
+          </svg>
+        </div>
+        : null
+      }     
+      { !error ? 
+        <div className="card-grid">
+          {
+            cards.map(card => 
+              <div 
+                  key={card.name} 
+                  className="card"
+                  data-name={card.name}
+                  onClick={handleCardClick}>
+                <img src={card.url} alt={card.name} />
+              </div>)
+          }
+        </div>
+      : <Error /> }
     </>
   )
 }

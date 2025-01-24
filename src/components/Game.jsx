@@ -35,6 +35,7 @@ function Game() {
 
   return (
     <>
+      <h1>Super Awesome Fun Memory Card Game</h1>
       <img src={helpIcon} onClick={handleHelp} className="help-icon" title="How to Play" alt="Help" />
       <div className='scores'>
         <span>Current score: {score}</span>
@@ -64,7 +65,7 @@ function Game() {
         <Modal heading={'How to Play'} btnText={'Close'} onClick={handleHelp}>
           <p>This is a game of memory.</p>
           <p>Simply select all the unique Pokémon.</p>
-          <p>Sound easy? Well hold onto yer britches there youngster... after each selection the deck is shuffled.</p>
+          <p>Sounds easy? Well hold onto yer britches there youngster... after each selection the deck is shuffled.</p>
           <p>Can you remember which cards you've already chosen?</p>
         </Modal> :
         null

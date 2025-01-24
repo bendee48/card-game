@@ -8,6 +8,7 @@
   padding: 2rem;
   text-align: center;
   border: 1px solid black;
+  --soft-peach: rgb(255, 244, 228);
 }
 
 img {
@@ -29,19 +30,68 @@ img {
   clear: both;
 }
 
+/* Loading Icon */
+
+.loading-icon {
+  width: 3.75em;
+  animation: 1.5s spin ease infinite;
+}
+
+.ring {
+  fill: none;
+  stroke: hsla(341, 75%, 14%, 0.3);
+  stroke-width: 2;
+}
+
+.ball {
+  fill: #000000;
+  stroke: none;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
 /* Card Grid */
 
 .card-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1em;
-  /* margin-top: 4em; */
 }
 
 /* Cards */
 
 .card {
-  border: 1px solid black;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.25);
+  transition: all 0.2s ease-in-out;
+  transform-origin: center;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  background-color: rgb(255, 244, 228);
+}
+
+
+/* Error */
+
+.error-message {
+  display: flex;
+  flex-direction: column;
+}
+
+.error-list {
+  text-align: left;
+  align-self: center;
+}
+
+.skill-error {
+  font-size: 0.5rem;
 }
 
 /* Modal */
@@ -63,7 +113,11 @@ img {
   max-height: 90%;
   max-width: 90%;
   min-width: 50vw;
-  padding: 1rem;
+  padding: 2em;
   border-radius: .5rem;
-  background: red;
+  background: var(--soft-peach);
+}
+
+.modal-heading {
+  font-size: 2rem;
 }
