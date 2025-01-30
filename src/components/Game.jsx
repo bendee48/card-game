@@ -35,7 +35,7 @@ function Game() {
 
   return (
     <>
-      <h1>Super Awesome Fun Memory Card Game</h1>
+      <h1 className="main-title">Super Awesome Fun Memory Card Game</h1>
       <img src={helpIcon} onClick={handleHelp} className="help-icon" title="How to Play" alt="Help" />
       <div className='scores'>
         <span>Current score: {score}</span>

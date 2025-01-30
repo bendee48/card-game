@@ -4,7 +4,7 @@ function Modal({heading, btnText, onClick, children}) {
       <div className='modal-menu'>
         <h1 className="modal-heading">{heading}</h1>
           {children}
-        <button onClick={onClick}>{btnText}</button>
+        <button className="modal-btn" onClick={onClick}>{btnText}</button>
       </div>
     </div>
   )

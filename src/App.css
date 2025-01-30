@@ -7,7 +7,6 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  border: 1px solid black;
   --soft-peach: rgb(255, 244, 228);
 }
 
@@ -20,6 +19,7 @@ img {
   width: 3em;
   float: right;
   cursor: help;
+  margin-bottom: 1em;
 }
 
 .help-icon:hover {
@@ -54,6 +54,15 @@ img {
   }
 }
 
+/* Scores */
+
+.scores {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  margin-bottom: 2em;
+  font-size: 1.1rem;
+}
 
 /* Card Grid */
 
@@ -67,7 +76,7 @@ img {
 
 .card {
   box-shadow: 0 1px 2px 0 rgba(0,0,0,0.25);
-  transition: all 0.2s ease-in-out;
+  transition: all 0.1s ease-in-out;
   transform-origin: center;
   cursor: pointer;
 }
@@ -113,11 +122,51 @@ img {
   max-height: 90%;
   max-width: 90%;
   min-width: 50vw;
-  padding: 2em;
+  padding: 3em 2em;
   border-radius: .5rem;
   background: var(--soft-peach);
 }
 
 .modal-heading {
   font-size: 2rem;
+  margin-bottom: 1em;
+}
+
+.modal-btn {
+  margin-top: 1em;
+}
+
+/* Media Queries */
+
+@media (max-width: 700px) {
+  #root {
+    width: 100vw;
+    height: 100%;
+    padding: 1em;
+  }
+
+  .main-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.2em;
+  }
+
+  .scores {
+    gap: 1em;
+  }
+
+  .modal-menu {
+    width: 95vw;
+    max-width: 95vw;
+  }
+
+  .modal-btn {
+    display: block;
+    width: 100%;
+    margin-top: 2em;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5em;
+  }
 }
