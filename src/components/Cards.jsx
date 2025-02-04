@@ -8,13 +8,14 @@ function Cards({onUpdateScore, onGameOver, onGameWin}) {
   let selectedCards = useRef(new Set());
 
   useEffect(() => {
-    console.log('The effect has run')
+    console.log('The effect has run');
     async function fetchPokemon() {
       try {
-        const result = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=12')
+        const result = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=151')
         const json = await result.json();
         const pokeList = json.results;
-        const detailedList = await getPokeInfo(pokeList);
+        const selectedPoke = selectPokemon(pokeList, 12, true);
+        const detailedList = await getPokeInfo(selectedPoke);
         setCards(detailedList);
       } catch(e) {
         console.error('ooops', e)
@@ -41,6 +42,27 @@ function Cards({onUpdateScore, onGameOver, onGameWin}) {
     );
 
     return list; // Wait for all fetches to complete and return the data
+  }
+
+  function selectPokemon(list, number=12, random=false) {
+    let pokemon = [];
+    const seen = {};
+
+    if (random) {
+      while (pokemon.length < number) {
+        const index = Math.floor(Math.random() * list.length);
+        if (seen[index]) {
+          continue;
+        } else {
+          pokemon.push(list[index]);
+          seen[index] = true;
+        }
+      }
+    } else {
+      pokemon = list.slice(0, number)
+    }
+
+    return pokemon;
   }
 
   // Fisher Yates algo O(n) to shuffle the cards
