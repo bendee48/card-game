@@ -1,3 +1,7 @@
+/**
+ * Error component that displays error messaging.
+ * @component
+ */
 function Error() {
   return (
     <div className="error-message">

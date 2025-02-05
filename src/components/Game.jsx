@@ -3,6 +3,10 @@ import helpIcon from '../assets/help.svg';
 import Cards from "./Cards.jsx";
 import Modal from "./Modal.jsx";
 
+/**
+ * Game component that displays the main game elements and manages game state.
+ * @component
+ */
 function Game() {
   const [score, setScore] = useState(0);
   const [topScore, setTopScore] = useState(0);
@@ -10,22 +14,37 @@ function Game() {
   const [gameWin, setGameWin] = useState(false);
   const [help, setHelp] = useState(false);
 
+  /**
+   * Increases the current score by 1.
+   */
   function handleScoreChange() {
     setScore(score + 1);
   }
 
+  /**
+   * Sets gameOver state to true.
+   */
   function handleGameOver() {
     setGameOver(true);
   }
 
+  /**
+   * Sets gameWin state to true.
+   */
   function handleGameWin() {
     setGameWin(true);
   }
 
+  /**
+   * Toggles help modal visibility.
+   */
   function handleHelp() {
     setHelp(!help);
   }
   
+  /**
+   * Resets game state for a new round.
+   */
   function handleReset() {
     setGameOver(false);
     setGameWin(false);
