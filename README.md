@@ -18,4 +18,4 @@ More React - (idea via the [Odin Project](https://www.theodinproject.com/lessons
   - CSS
   - JavaScript
 
-  [Live Version]()
+  [Live Version](https://superawesomememorycardgame.netlify.app/)
