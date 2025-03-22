@@ -1,0 +1,28 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Card Component > displays pokémon cards 1`] = `
+<div>
+  <div
+    class="card-grid"
+  >
+    <div
+      class="card"
+      data-name="Bulbasaur"
+    >
+      <img
+        alt="Bulbasaur"
+        src="bulby.jpg"
+      />
+    </div>
+    <div
+      class="card"
+      data-name="Charmander"
+    >
+      <img
+        alt="Charmander"
+        src="char.jpg"
+      />
+    </div>
+  </div>
+</div>
+`;

@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import PropTypes from "prop-types";
 import  Error  from './Error.jsx';
 
 /**
@@ -126,6 +127,12 @@ function Cards({onUpdateScore, onGameOver, onGameWin}) {
     }
 
     shuffle();
+  }
+
+  Cards.propTypes = {
+    onUpdateScore: PropTypes.func.isRequired,
+    onGameOver: PropTypes.func.isRequired,
+    onGameWin: PropTypes.func.isRequired,
   }
 
   return (
